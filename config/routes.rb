@@ -1,4 +1,6 @@
 Airbaba::Application.routes.draw do
+  resources :bookings
+
   resources :flats
 
   devise_for :users
