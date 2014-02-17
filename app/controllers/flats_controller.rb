@@ -15,7 +15,8 @@ class FlatsController < ApplicationController
   # GET /flats/new
   def new
     @flat = Flat.new
-    @picture = Picture.new
+    pics = @flat.pictures.build
+    # pics.pictures
   end
 
   # GET /flats/1/edit
@@ -28,15 +29,11 @@ class FlatsController < ApplicationController
   # POST /flats.json
   def create
     @flat = current_user.flats.create(flat_params)
-    #@flat.pictures.create(picture_params)
-
-    respond_to do |format|
-      if @flat.save
-        format.html { redirect_to @flat, notice: 'Flat was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @flat }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @flat.errors, status: :unprocessable_entity }
+    p flat_params
+    # @flat.pictures.create(picture_params)
+    if @flat.save
+      params[:picture].each do |pic|
+        @flat.pictures.create(:picture => pic)
       end
     end
   end

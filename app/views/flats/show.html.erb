@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <strong>Owner:</strong>
-  <%= @flat.owner_id %>
+  <strong>Picture of the flat:</strong>
+  <%= image_tag @flat.pictures.first.url %>
 </p>
 
 <%= link_to 'Edit', edit_flat_path(@flat) %> |

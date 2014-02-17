@@ -1,4 +1,4 @@
-<%= form_for @flat do |f| %>
+<%= form_for @flat, :html => { :multipart => true } do |f| %>
   
   <% if @flat.errors.any? %>
     <div id="error_explanation">
@@ -31,6 +31,11 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+
+
+  <%= file_field_tag :picture, multiple: true %>
+
+
 
   <div class="actions">
     <%= f.submit %>
