@@ -1,4 +1,6 @@
 Airbaba::Application.routes.draw do
+  resources :pictures
+
   resources :bookings
 
   resources :flats

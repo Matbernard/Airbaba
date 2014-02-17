@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217140625) do
+ActiveRecord::Schema.define(version: 20140217144822) do
+
+  create_table "bookings", force: true do |t|
+    t.date     "start_date"
+    t.date     "end_time"
+    t.integer  "flat_id"
+    t.integer  "booker_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "flats", force: true do |t|
     t.string   "title"
@@ -21,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140217140625) do
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pictures", force: true do |t|
+    t.integer  "flat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "tags", force: true do |t|
