@@ -32,9 +32,9 @@
     <%= f.text_area :description %>
   </div>
 
-
-  <%= file_field_tag :picture, multiple: true %>
-
+  <%= f.fields_for :pictures, @pictures , html: { :multipart => true } do |picture_form| %>
+    <%= picture_form.file_field :picture %>
+  <% end %>
 
 
   <div class="actions">
