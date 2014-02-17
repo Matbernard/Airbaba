@@ -1,0 +1,10 @@
+<h2><%= @user.full_name %></h2>
+
+<h3>List of flats</h3>
+<% @user.flats.each do |flat| %>
+<p>
+	<%= flat.title %>
+	<%= link_to "Edit", edit_flat_path(flat) %>
+</p>
+<% end %>
+<%= link_to "Create a new flat", new_flat_path %>

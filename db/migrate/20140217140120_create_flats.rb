@@ -5,7 +5,7 @@ class CreateFlats < ActiveRecord::Migration
       t.string :address
       t.integer :day_price
       t.text :description
-      t.integer :owner_id
+      t.belongs_to :owner
 
       t.timestamps
     end

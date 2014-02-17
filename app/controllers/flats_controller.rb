@@ -15,16 +15,20 @@ class FlatsController < ApplicationController
   # GET /flats/new
   def new
     @flat = Flat.new
+    @picture = Picture.new
   end
 
   # GET /flats/1/edit
   def edit
+    @flat = Flat.find(params[:id])
+    @picture = @flat.pictures.first
   end
 
   # POST /flats
   # POST /flats.json
   def create
-    @flat = Flat.new(flat_params)
+    @flat = current_user.flats.create(flat_params)
+    #@flat.pictures.create(picture_params)
 
     respond_to do |format|
       if @flat.save
@@ -71,4 +75,9 @@ class FlatsController < ApplicationController
     def flat_params
       params.require(:flat).permit(:title, :address, :day_price, :description, :owner_id)
     end
+
+    def picture_params
+      params.require(:picture).permit(:picture)
+    end
+
 end
