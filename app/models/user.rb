@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :flats, foreign_key: 'owner_id'
-  has_many :bookings
+  has_many :bookings, foreign_key: 'booker_id'
+  has_many :reviews, through: :bookings
+  has_many :booked_flats, through: :bookings, source: :flat
+
+
 
 end

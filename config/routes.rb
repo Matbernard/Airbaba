@@ -1,23 +1,30 @@
 Airbaba::Application.routes.draw do
-  
-  resources :bookings
 
   devise_for :users
 
   resources :flats do
-    resources :pictures
+     resources :bookings
   end
 
-  resources :users, only: [:show, :index]
 
-  get '/user/flats' => "flats#show"
+  resources :users, only: [:show]
+
+  # get '/user/flats' => "flats#show"
   
+  # authenticated do
+  #   root to: 'pages#home'
+  # end
+
+  # root to: 'pages#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#home'
+  root to: 'flats#index'
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

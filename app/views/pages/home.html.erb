@@ -1,9 +1,1 @@
-<h1>Welcome ! </h1>
-
-<%= link_to "Sign In", new_user_session_path %>
-<%= link_to "Sign Up", new_user_registration_path %>
-<%= link_to "Sign Out!", destroy_user_session_path, method: :delete %>
-
-<%= link_to "My profile", user_path(@user) %>
-<%= link_to "My flats", users_flats_path(@user) %>
-<%= link_to "Create a new flat", new_flat_path(@user) %>
+<h1>Welcome <%= @user.full_name if user_signed_in? %>! </h1>

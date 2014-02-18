@@ -24,7 +24,7 @@
           <%= image_tag flat.pictures.first.picture(:thumb) %>
           <% end %>
         </td>
-        <td><%= flat.title %></td>
+        <td><%= link_to flat.title, flat_path(flat) %></td>
         <td><%= flat.address %></td>
         <td><%= flat.day_price %></td>
         <td><%= flat.description %></td>

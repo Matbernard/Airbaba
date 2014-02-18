@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218094601) do
+ActiveRecord::Schema.define(version: 20140218151643) do
 
   create_table "bookings", force: true do |t|
     t.date     "start_date"
@@ -48,6 +48,14 @@ ActiveRecord::Schema.define(version: 20140218094601) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+  end
+
+  create_table "reviews", force: true do |t|
+    t.text     "comment"
+    t.integer  "rating"
+    t.integer  "booking_id_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: true do |t|

@@ -10,11 +10,15 @@ class BookingsController < ApplicationController
   # GET /bookings/1
   # GET /bookings/1.json
   def show
+    @flat = Flat.find(params[:flat_id])
+    @booking = Booking.find(params[:id])
   end
 
   # GET /bookings/new
   def new
-    @booking = Booking.new
+    @booking = Booking.new # (flat_id: params[:flat_id])
+    @flat = Flat.find(params[:flat_id])
+    
   end
 
   # GET /bookings/1/edit
@@ -24,11 +28,13 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    @booking = current_user.bookings.create(booking_params)
+    @flat = Flat.find(params[:flat_id])
+    @flat.bookings << @booking
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to flat_booking_path(@flat, @booking), notice: 'Booking was successfully created.' }
         format.json { render action: 'show', status: :created, location: @booking }
       else
         format.html { render action: 'new' }
