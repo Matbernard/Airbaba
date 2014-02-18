@@ -16,11 +16,15 @@ class FlatsController < ApplicationController
   def new
     @flat = Flat.new
     @pictures = @flat.pictures.build
-    # pics.pictures
   end
 
   # GET /flats/1/edit
   def edit
+    if @flat.owner != current_user
+      redirect_to root_path, alert: "This is not your flat!"
+      return
+    end
+    @flat.build_picture if @flat.pictures.nil?
     @flat = Flat.find(params[:id])
     @pictures = @flat.pictures
   end
@@ -28,15 +32,8 @@ class FlatsController < ApplicationController
   # POST /flats
   # POST /flats.json
   def create
-    p flat_params
     @flat = current_user.flats.create(flat_params)
     redirect_to flat_url(@flat)
-    # @flat.pictures.create(picture_params)
-    #if @flat.save
-    #  params[:picture].each do |pic|
-    #    @flat.pictures.create(:picture => pic)
-    #  end
-    #end
   end
 
   # PATCH/PUT /flats/1
@@ -71,7 +68,7 @@ class FlatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flat_params
-      params.require(:flat).permit(:title, :address, :day_price, :description, :owner_id, pictures_attributes: [:picture])
+      params.require(:flat).permit(:title, :address, :day_price, :description, :owner_id, pictures_attributes: [:id, :picture], tag_ids:[])
     end
 
 

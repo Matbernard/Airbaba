@@ -9,6 +9,8 @@ Airbaba::Application.routes.draw do
   end
 
   resources :users, only: [:show, :index]
+
+  get '/user/flats' => "flats#show"
   
 
   # The priority is based upon order of creation: first created -> highest priority.

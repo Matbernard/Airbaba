@@ -1,13 +1,16 @@
-<h1>Listing flats</h1>
+<h1>Salam !!</h1>
+
+<h1>Here are all the flats available on AIR BABAAAA !</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Title</th>
       <th>Address</th>
       <th>Day price</th>
       <th>Description</th>
-      <th>Owner</th>
+      <th>Tags</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,14 +20,19 @@
   <tbody>
     <% @flats.each do |flat| %>
       <tr>
+        <td><% if flat.pictures.first %>
+          <%= image_tag flat.pictures.first.picture(:thumb) %>
+          <% end %>
+        </td>
         <td><%= flat.title %></td>
         <td><%= flat.address %></td>
         <td><%= flat.day_price %></td>
         <td><%= flat.description %></td>
-        <td><%= flat.owner_id %></td>
-        <td><%= link_to 'Show', flat %></td>
-        <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
-        <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% flat.tags.each do |t| %>
+          <%= t.name %>
+          <% end %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>

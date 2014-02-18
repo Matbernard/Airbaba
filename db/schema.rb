@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217144822) do
+ActiveRecord::Schema.define(version: 20140218094601) do
 
   create_table "bookings", force: true do |t|
     t.date     "start_date"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20140217144822) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "flats_tags", id: false, force: true do |t|
+    t.integer "tag_id",  null: false
+    t.integer "flat_id", null: false
+  end
+
+  add_index "flats_tags", ["flat_id", "tag_id"], name: "index_flats_tags_on_flat_id_and_tag_id"
+  add_index "flats_tags", ["tag_id", "flat_id"], name: "index_flats_tags_on_tag_id_and_flat_id"
 
   create_table "pictures", force: true do |t|
     t.integer  "flat_id"

@@ -1,10 +1,41 @@
-<h2><%= @user.full_name %></h2>
+<h2>Welcome, <%= @user.full_name %>!</h2>
+<h3>Here are all your flats</h3>
 
-<h3>List of flats</h3>
-<% @user.flats.each do |flat| %>
-<p>
-	<%= flat.title %>
-	<%= link_to "Edit", edit_flat_path(flat) %>
-</p>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Address</th>
+      <th>Day price</th>
+      <th>Description</th>
+      <th>Tags</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flats.each do |flat| %>
+      <tr>
+        <td><%= image_tag flat.pictures.first.picture(:thumb) %></td>
+        <td><%= flat.title %></td>
+        <td><%= flat.address %></td>
+        <td><%= flat.day_price %></td>
+        <td><%= flat.description %></td>
+        <td><% flat.tags.each do |t| %>
+          <%= t.name %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', flat %></td>
+        <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
+        <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
 <%= link_to "Create a new flat", new_flat_path %>

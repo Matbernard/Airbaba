@@ -21,8 +21,17 @@
 </p>
 
 <p>
+  <strong>Tags:</strong>
+ <% @flat.tags.each do |tag|%>
+     <p>• <%= tag.name %></p>
+  <% end %>
+</p>
+
+<p>
   <strong>Picture of the flat:</strong>
-  <%= image_tag @flat.pictures.first.url %>
+  <% @flat.pictures.each do |pict| %>
+    <li style="list-style-type: none"><%= image_tag pict.picture(:medium) %></li>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_flat_path(@flat) %> |
