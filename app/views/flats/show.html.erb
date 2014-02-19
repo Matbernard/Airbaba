@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Know more about this flat </h2>
+
 <p>
   <strong>Title:</strong>
   <%= @flat.title %>
@@ -35,7 +37,42 @@
 </p>
 
 
-<p> <%= link_to "Book!", new_flat_booking_path(@flat), class: "btn btn-default btn-lg" %> </p>
+<h3>Know more about the owner of this flat </h3>
 
+<p>
+  <strong>Name:</strong>
+  <%= @flat.owner.full_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @flat.owner.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @flat.owner.telephone %>
+</p>
+
+<h3>Last bookings </h3>
+
+<p>
+  <% @flat.bookings.each do |b| %>
+  <%= b.booker.full_name %>
+  (From <%= b.start_date %> to <%= b.end_time %>)
+  <% end %>
+</p>
+
+<p> 
+  <% unless @flat.owner == current_user %> 
+  <%= link_to "Book!", new_flat_booking_path(@flat), class: "btn btn-default btn-lg" %> 
+  <% end %> 
+</p>
+
+<p>
+<% if @flat.owner == current_user %> 
 <%= link_to 'Edit', edit_flat_path(@flat) %> |
+<% end %> 
 <%= link_to 'Back', flats_path %>
+</p>
+

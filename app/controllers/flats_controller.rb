@@ -1,5 +1,6 @@
 class FlatsController < ApplicationController
   before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :authenticate_user!, :only => [:index, :show]
 
   # GET /flats
   # GET /flats.json
@@ -24,9 +25,8 @@ class FlatsController < ApplicationController
       redirect_to root_path, alert: "This is not your flat!"
       return
     end
-    @flat.build_picture if @flat.pictures.nil?
-    @flat = Flat.find(params[:id])
-    @pictures = @flat.pictures
+    
+    @picture = @flat.pictures.build
   end
 
   # POST /flats

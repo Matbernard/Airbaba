@@ -12,12 +12,12 @@
 
 <p>
   <strong>Flat:</strong>
-  <%= @booking.flat_id %>
+  <%= @booking.flat.title %>
 </p>
 
 <p>
   <strong>Booker:</strong>
-  <%= @booking.booker_id %>
+  <%= @booking.booker.full_name %>
 </p>
 
 <%= link_to 'Edit', edit_flat_booking_path(@flat, @booking) %>

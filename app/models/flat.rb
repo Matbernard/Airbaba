@@ -7,4 +7,10 @@ class Flat < ActiveRecord::Base
 	accepts_nested_attributes_for :pictures
 	has_many :reviews, through: :bookings
 	has_many :bookers, through: :bookings
+
+	validates :title, presence: {:message => 'You HAVE to give a title to your flat !'}
+	validates :address, presence: {:message => 'You HAVE to tell us where it is !'}
+	validates :day_price, presence: {:message => "That's free ?"}
+	validates :description, presence: {:message => "You HAVE to describe a bit your place !"}
+
 end
