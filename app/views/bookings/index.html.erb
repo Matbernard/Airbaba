@@ -20,14 +20,12 @@
         <td><%= booking.end_time %></td>
         <td><%= booking.flat_id %></td>
         <td><%= booking.booker_id %></td>
-        <td><%= link_to 'Show', booking %></td>
-        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', flat_booking_path(booking.flat_id, booking) %></td>
+        <td><%= link_to 'Edit', edit_flat_booking_path(booking.flat_id, booking) %></td>
+        <td><%= link_to 'Destroy', flat_booking_path(booking.flat_id, booking), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Booking', new_booking_path %>

@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_flat
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
   # GET /bookings
@@ -18,7 +19,6 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new # (flat_id: params[:flat_id])
     @flat = Flat.find(params[:flat_id])
-    
   end
 
   # GET /bookings/1/edit
@@ -27,14 +27,12 @@ class BookingsController < ApplicationController
 
   # POST /bookings
   # POST /bookings.json
-  def create
-    @booking = current_user.bookings.create(booking_params)
-    @flat = Flat.find(params[:flat_id])
-    @flat.bookings << @booking
+  def create  
+    @booking = current_user.bookings.create(booking_params.merge(flat: @flat))    
 
     respond_to do |format|
       if @booking.save
-        format.html { redirect_to flat_booking_path(@flat, @booking), notice: 'Booking was successfully created.' }
+        format.html { redirect_to [@flat, @booking], notice: 'Booking was successfully created.' }
         format.json { render action: 'show', status: :created, location: @booking }
       else
         format.html { render action: 'new' }
@@ -48,7 +46,7 @@ class BookingsController < ApplicationController
   def update
     respond_to do |format|
       if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.html { redirect_to @flat, @booking, notice: 'Booking was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -67,7 +65,12 @@ class BookingsController < ApplicationController
     end
   end
 
+
   private
+    def set_flat
+      @flat = Flat.find(params[:flat_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
@@ -77,4 +80,5 @@ class BookingsController < ApplicationController
     def booking_params
       params.require(:booking).permit(:start_date, :end_time, :flat_id, :booker_id)
     end
+
 end

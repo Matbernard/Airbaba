@@ -35,7 +35,12 @@ gem 'paperclip', "~> 3.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', require: false  
+end
+
+group :development do
+	gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Use ActiveModel has_secure_password

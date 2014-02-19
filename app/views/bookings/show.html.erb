@@ -20,5 +20,15 @@
   <%= @booking.booker.full_name %>
 </p>
 
+<p>
+  <strong>Duration of stay:</strong>
+  <%= @booking.duration %> nights
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @booking.total_price %> euros
+</p>
+
 <%= link_to 'Edit', edit_flat_booking_path(@flat, @booking) %>
 <%= link_to 'Back', flat_path(@flat) %>

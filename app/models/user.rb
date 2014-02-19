@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :flats, foreign_key: 'owner_id'
-  has_many :bookings, foreign_key: 'booker_id'
+  has_many :flats, foreign_key: 'owner_id', dependent: :destroy
+  has_many :bookings, foreign_key: 'booker_id', dependent: :destroy
   has_many :reviews, through: :bookings
   has_many :booked_flats, through: :bookings, source: :flat
 

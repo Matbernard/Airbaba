@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Airbaba</title>
+  <title>Airbaba - Locations de vacances, maisons, appartements et chambres d'hôtes à louer</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   
   <%= csrf_meta_tags %>
@@ -10,6 +10,7 @@
 
   <!-- Optional theme -->
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+ 
 
 </head>
 <body>
@@ -50,10 +51,6 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Your profile", profile_path %></li>
             <li><%= link_to "Sign Out!", destroy_user_session_path, method: :delete %></li>
-<!--             <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li> -->
           </ul>
         </li>
 
@@ -79,8 +76,30 @@
 	<%= yield %>
 </div>
 
-	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Home</p>
+      </div>
+    </div>
+
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> 
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

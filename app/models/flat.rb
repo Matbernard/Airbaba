@@ -1,11 +1,11 @@
 class Flat < ActiveRecord::Base
 
 	belongs_to :owner, class_name: "User"
-	has_many :bookings
+	has_many :bookings, dependent: :destroy
 	has_and_belongs_to_many :tags
-	has_many :pictures
+	has_many :pictures, dependent: :destroy
 	accepts_nested_attributes_for :pictures
-	has_many :reviews, through: :bookings
+	# has_many :reviews, through: :bookings, dependent: :destroy
 	has_many :bookers, through: :bookings
 
 	validates :title, presence: {:message => 'You HAVE to give a title to your flat !'}
