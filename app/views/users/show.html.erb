@@ -1,0 +1,67 @@
+<h2>Welcome, <%= @user.full_name %>!</h2>
+<h4>Here are all the information we have about you</h4>
+
+<p>Your name: <%= current_user.full_name %></p>
+<p>Your email: <%= current_user.email %></p>
+<p>Your phone: <%= current_user.telephone %></p>
+
+<p>Your last login : <%= current_user.last_sign_in_at %></p>
+
+
+<h4>Here are all the flats you own</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Address</th>
+      <th>Day price</th>
+      <th>Description</th>
+      <th>Tags</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.flats.each do |flat| %>
+      <tr>
+        <td>
+          <%= image_tag flat.pictures.first.picture(:thumb) unless flat.pictures.empty? %>
+        </td>
+        <td><%= flat.title %></td>
+        <td><%= flat.address %></td>
+        <td><%= flat.day_price %></td>
+        <td><%= flat.description %></td>
+        <td><% flat.tags.each do |t| %>
+          <%= t.name %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', flat %></td>
+        <td><%= link_to 'Edit', edit_flat_path(flat) %></td>
+        <td><%= link_to 'Destroy', flat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<br/>
+
+  <p><%= link_to "Create a new flat", new_flat_path %></p>
+
+<br/>
+
+<h4>Here are all the flats you booked</h4>
+
+  <% current_user.bookings.each do |b| %>
+    <% flat = Flat.find(b.flat_id) %>
+    <p><%= image_tag flat.pictures.first.picture(:thumb) unless flat.pictures.empty? %> | <%= flat.title %> | <%= b.start_date %> | <%= b.end_time %></p>
+    ---------------------------------------------------------------------------------
+  <% end %>
+
+<br/>
+
+
