@@ -23,8 +23,11 @@ class Flat < ActiveRecord::Base
   end
 
   def self.available(search_start_date, search_end_time)
-  	return where('') if search_end_time.nil? or search_start_date.nil?
-		Flat.includes(:bookings).where("bookings.id IS NULL OR bookings.end_time < ? OR bookings.start_date > ?", search_start_date, search_end_time).references(:bookings)
+  	return where('') if search_end_time.nil? or search_start_date.nil?		  	
+  	where(
+  		Booking.where("bookings.flat_id == flats.id AND bookings.start_date < ? AND bookings.end_time > ?", 
+  									search_end_time, search_start_date).exists.not
+  	)
   end
 
 
