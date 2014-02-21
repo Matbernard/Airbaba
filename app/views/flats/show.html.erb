@@ -1,0 +1,129 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+
+      <h2>Know more about this flat </h2>
+
+      <p>
+        <strong>Title:</strong>
+        <%= @flat.title %>
+      </p>
+
+      <p>
+        <strong>Address:</strong>
+        <%= @flat.address %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @flat.city %>
+      </p>
+
+      <p>
+        <strong>Day price:</strong>
+        <%= @flat.day_price %>
+      </p>
+
+      <p>
+        <strong>Description:</strong>
+        <%= @flat.description %>
+      </p>
+
+      <p>
+        <strong>Tags:</strong>
+       <% @flat.tags.each do |tag|%>
+           <p>• <%= tag.name %></p>
+        <% end %>
+      </p>
+
+      <p>
+        <strong>Picture of the flat:</strong>
+        <% @flat.pictures.each do |pict| %>
+          <li style="list-style-type: none"><%= image_tag pict.picture(:medium) %></li>
+        <% end %>
+      </p>
+
+
+      <h3>Know more about the owner of this flat </h3>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @flat.owner.full_name %>
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <%= @flat.owner.email %>
+      </p>
+
+      <p>
+        <strong>Phone:</strong>
+        <%= @flat.owner.telephone %>
+      </p>
+
+      <h3>Last bookings </h3>
+
+      <p>
+        <% @flat.bookings.each do |b| %>
+        <%= b.booker.full_name %>
+        (From <%= b.start_date %> to <%= b.end_time %>)
+        <% end %>
+      </p>
+
+      <p> 
+        <% unless @flat.owner == current_user %> 
+        <%= link_to "Book!", new_flat_booking_path(@flat), class: "btn btn-default btn-lg" %> 
+        <% end %> 
+      </p>
+
+      <p>
+      <% if @flat.owner == current_user %> 
+      <%= link_to 'Edit', edit_flat_path(@flat) %> |
+      <%= link_to 'Destroy', @flat, method: :delete, data: { confirm: 'Are you sure?' } %> |
+      <% end %> 
+      <%= link_to 'Back', flats_path %>
+      </p>
+
+    </div>
+
+    <div class="col-md-6">
+        <h2>Reviews left</h2>
+
+        <% if user_signed_in? and current_user.has_stayed_in?(@flat) %>
+          <div class="review-form">
+            <%= form_for [@flat, @review], remote: true do |f| %>
+              <%= f.hidden_field :booking_id, value: current_user.last_booking_for(@flat).id %>            
+
+              <div class="form-group">
+                <%= f.label :rating %>
+                <%= f.select :rating, (1..Review::RATING_MAX) %>
+              </div>
+              
+              <div class="form-group">
+                <%= f.label :comment %>
+                <%= f.text_area :comment %>
+              </div>
+
+              <div>
+                <%= f.submit 'Commenter' %>
+              </div>
+            <% end %>
+
+            <hr>
+          </div>  
+        <% end %>
+
+        <div class="reviews">
+          <%= render partial: 'reviews/review', collection: @flat.reviews %>
+        </div>
+
+    </div>
+
+  </div>
+
+</div>
+

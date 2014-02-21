@@ -1,0 +1,85 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 35px 35px;
+  margin-bottom: 60px
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+/*code {
+  font-size: 80%;
+}
+
+.navbar {
+  margin-bottom: 0;
+}*/
+
+.carousel-inner img {
+  margin: auto;
+  width: 100%;
+}
+
+/*h1 {
+  font-size: 1.6em;
+  color: rgb(156,0,1);
+  text-align: center;
+  vertical-align: middle;
+  margin: 15px 20px 0px 20px;
+  font-family: 'Frijole', cursive;
+}
+
+.navbar {
+  border-color:black;
+  background-color: black;
+  border-radius: 0;
+  height: 95px;
+}
+
+.navbar a {
+  color:rgb(156,0,1) !important;
+}
+
+.navbar-default .navbar-nav>.active>a {
+  background-color: black !important;
+}*/
+
+.container-fluid {
+  padding-top: 20px;
+}
