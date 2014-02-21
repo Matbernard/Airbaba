@@ -18,6 +18,7 @@ class FlatsController < ApplicationController
   # GET /flats/1
   # GET /flats/1.json
   def show
+    @review = Review.new
   end
 
   # GET /flats/new

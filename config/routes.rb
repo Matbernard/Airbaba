@@ -1,10 +1,13 @@
 Airbaba::Application.routes.draw do
 
+  get "reviews/create"
   devise_for :users
 
   resources :flats do
      resources :bookings
+     resources :reviews, only: :create
   end
+
 
   # get '/user/flats' => "flats#show"
   
@@ -22,6 +25,7 @@ Airbaba::Application.routes.draw do
   root to: 'flats#index'
   get '/profile' => 'users#show'
 
+  get '/contact' => 'contacts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

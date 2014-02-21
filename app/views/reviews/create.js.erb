@@ -1,0 +1,4 @@
+var review = $("<%= j render partial: 'reviews/review', object: @review %>").hide();
+
+$('.reviews').prepend(review.fadeIn(1000));
+$('.review-form').remove();

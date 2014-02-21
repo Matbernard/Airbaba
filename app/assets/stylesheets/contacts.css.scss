@@ -1,0 +1,52 @@
+
+#crew {
+	display: inline-block;
+}
+
+#crew img, #tastes img {
+	border-radius:50%;
+	height:50%;
+	width:50%;
+	margin:auto;
+	text-align: center;
+	/*border: 10px solid rgb(156,0,1);*/
+}
+
+#crew p, #tastes p {
+	text-align: center;
+	padding: 10px;
+}
+
+.name {
+	font-weight: bold
+}
+
+/*h2 {
+	text-align: center;
+	height:100px;
+	background-color: black;
+	font-family: 'Frijole', cursive;
+	color: rgb(156,0,1);
+	margin:0 0 50px 0;
+	padding: 5% 0 8% 0;
+}*/
+
+.crew, .tastes {
+	text-align: center;
+}
+
+footer {
+	background-color: black;
+	color: rgb(156,0,1);
+	font-style: italic;
+	text-align: right;
+	padding:20px;
+}
+
+a {
+	color: rgb(156,0,1);
+}
+
+a:hover {
+	color: rgb(156,0,1);
+}

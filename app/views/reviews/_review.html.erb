@@ -1,0 +1,19 @@
+<div class="review">
+	<h3><%= review.booking.booker.full_name %></h3>
+	<p>
+		Il y a <%= time_ago_in_words(review.created_at) %>
+	</p>
+
+	<p>
+		<%= review.comment %>
+	</p>
+
+	<p>
+		<% review.rating.times do %>
+			<i class="glyphicon glyphicon-star"></i>
+		<% end %>
+		<% (Review::RATING_MAX - review.rating).times do %>
+			<i class="glyphicon glyphicon-star-empty"></i>
+		<% end %>
+	</p>
+</div>

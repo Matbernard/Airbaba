@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220133149) do
+ActiveRecord::Schema.define(version: 20140221151643) do
 
   create_table "bookings", force: true do |t|
     t.date     "start_date"
@@ -54,7 +54,8 @@ ActiveRecord::Schema.define(version: 20140220133149) do
   create_table "reviews", force: true do |t|
     t.text     "comment"
     t.integer  "rating"
-    t.integer  "booking_id_id"
+    t.integer  "booking_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
